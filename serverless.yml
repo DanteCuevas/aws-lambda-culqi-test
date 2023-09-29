@@ -1,0 +1,14 @@
+service: serverless-http-api-typescript
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+
+functions:
+  hello:
+    handler: dist/handler.hello
+    events:
+      - httpApi:
+          path: /
+          method: get
