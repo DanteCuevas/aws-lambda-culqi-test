@@ -1,10 +1,10 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
+import { success, fail } from '../../utils/response';
 
 export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
-  return {
-    statusCode: 201,
-    body: JSON.stringify({
-      message: 'token creado'
-    })
-  };
+  try {
+    return success({ message: 'create token', event });
+  } catch (error) {
+    return fail();
+  }
 };
