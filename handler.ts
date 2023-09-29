@@ -7,9 +7,7 @@ export const hello = async (event: APIGatewayProxyEvent): Promise<APIGatewayProx
       {
         message: "Go Serverless v3.0! Your function executed successfully!",
         input: event,
-      },
-      null,
-      2
+      }
     ),
   };
 };
