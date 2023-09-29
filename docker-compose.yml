@@ -1,0 +1,45 @@
+version: "3"
+services:
+    # Node service
+    serverless-node-culqi:
+        build: .
+        container_name: serverless-node-culqi
+        working_dir: /app
+        ports:
+            - "3001:3000"
+        volumes:
+            - ./:/app
+        networks:
+            - serverless-network-culqi
+        depends_on:
+            - serverless-postgres-culqi
+            - serverless-redis-culqi
+
+    # Postgres database service
+    serverless-postgres-culqi:
+        image: postgres:15
+        container_name: serverless-postgres-culqi
+        ports:
+            - "5433:5432"
+        environment:
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=postgres
+            - POSTGRES_DB=culqi_db
+        networks:
+            - serverless-network-culqi
+
+    serverless-redis-culqi: # Name of container
+        image: redis
+        container_name: serverless-redis-culqi
+        ports:
+            - 6380:6379
+        volumes:
+            - redis:/data
+
+volumes:
+    redis:
+        driver: local
+
+networks:
+    serverless-network-culqi:
+        driver: bridge

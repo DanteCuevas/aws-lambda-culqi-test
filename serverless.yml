@@ -4,6 +4,17 @@ frameworkVersion: '3'
 provider:
   name: aws
   runtime: nodejs16.x
+  memorySize: 192
+  stage: ${opt:stage, 'local'}
+  region: ${opt:region, 'us-east-1'}
+  endpointType: REGIONAL
+  apiName: CULQI CHALLENGE API
+
+custom:
+  serverless-offline:
+    host: 0.0.0.0
+    printOutput: true
+    cacheInvalidationRegex: 'node_modules/'
 
 functions:
   hello:
