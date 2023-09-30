@@ -29,6 +29,12 @@ functions:
       - httpApi:
           path: /token
           method: post
+  token-get:
+    handler: dist/src/handlers/token/get.handler
+    events:
+      - httpApi:
+          path: /token
+          method: get
 
 plugins:
   - serverless-offline

@@ -3,6 +3,9 @@
   "description": "This template demonstrates how to make a simple HTTP API with Node.js and Typescript running on AWS Lambda and API Gateway using the Serverless Framework v3",
   "version": "1.0.0",
   "scripts": {
+    "clean-db": "prisma migrate reset",
+    "sync-db-tables": "prisma db push",
+    "generate-types": "prisma generate",
     "lint": "eslint . --ext .ts",
     "lint.fix": "eslint . --ext .ts —-fix",
     "build": "tsc",
@@ -15,9 +18,14 @@
     "@typescript-eslint/parser": "^6.7.3",
     "eslint": "^8.50.0",
     "eslint-config-standard": "^17.1.0",
+    "prisma": "^5.3.1",
     "serverless": "^3.21.0",
     "serverless-offline": "^9.1.6",
     "serverless-plugin-typescript": "^2.1.2",
     "typescript": "^4.7.4"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.3.1",
+    "dotenv": "^16.3.1"
   }
 }
