@@ -24,7 +24,6 @@ const rulesJoi = Joi.object({
     .length(4)
     .regex(/^\d+$/)
     .custom((value, helper) => {
-      console.log(value, typeof value)
       const year: number = parseInt(value)
       const currentYear: number = new Date().getFullYear()
       if (year < currentYear || year > currentYear + 5) {
