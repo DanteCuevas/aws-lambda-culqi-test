@@ -24,13 +24,13 @@ functions:
           path: /
           method: get
   token-create:
-    handler: dist/src/handlers/token/create.handler
+    handler: dist/src/handlers/card/create.handler
     events:
       - httpApi:
           path: /token
           method: post
   token-get:
-    handler: dist/src/handlers/token/get.handler
+    handler: dist/src/handlers/card/get.handler
     events:
       - httpApi:
           path: /token

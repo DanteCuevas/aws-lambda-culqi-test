@@ -10,11 +10,18 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Token {
-  id                Int @id @default(autoincrement())
+model Card {
+  id                String @id
   card_number       String
-  cvv               Int
+  cvv               String
   expiration_month  String
   expiration_year   String
   email             String
+  merchandice       String
+  deleted           Boolean   @default(false)
+  created_at        DateTime  @default(now())
+  updated_at        DateTime  @updatedAt
+  deleted_at        DateTime?
+
+  @@map(name: "cards")
 }
