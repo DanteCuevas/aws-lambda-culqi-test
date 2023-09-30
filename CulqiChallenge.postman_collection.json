@@ -1,0 +1,83 @@
+{
+	"info": {
+		"_postman_id": "3108cae0-5085-4b0f-89d0-0ee84d9969d7",
+		"name": "CulqiChallenge",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3445950"
+	},
+	"item": [
+		{
+			"name": "create token",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "pk_test_LsRBKejzCOEEWOsw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"card_number\": \"4111111111111111\",\n    \"cvv\": \"123\",\n    \"expiration_month\": \"12\",\n    \"expiration_year\": \"2024\",\n    \"email\": \"danieldantecuevas22@gmail.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3001/token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get data token",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "pk_test_LsRBKejzCOEEWOsw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3001/token?token=uiKLQ4ON9IqM1ejp",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"token"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "uiKLQ4ON9IqM1ejp"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

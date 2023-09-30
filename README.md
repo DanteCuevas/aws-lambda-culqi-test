@@ -1,45 +1,44 @@
-<!--
-title: 'AWS Simple HTTP Endpoint example in NodeJS with Typescript'
-description: 'This template demonstrates how to make a simple HTTP API with Node.js and Typescript running on AWS Lambda and API Gateway using the Serverless Framework v3.'
-layout: Doc
-framework: v3
-platform: AWS
-language: nodeJS
-authorLink: 'https://github.com/serverless'
-authorName: 'Serverless, inc.'
-authorAvatar: 'https://avatars1.githubusercontent.com/u/13742415?s=200&v=4'
--->
+## Project Specifications
 
-# Serverless Framework Node with Typescript HTTP API on AWS
+**Tecnologías usadas**
+- DOCKER
+- DOCKER COMPOSE 3
+- Node v16.19.1
+- Postgres 15
+- Redis 7.2.1
+- Vue 2.6.11
+- Serverless
 
-This template demonstrates how to make a simple HTTP API with Node.js and Typescript running on AWS Lambda and API Gateway using the Serverless Framework v3.
+**Requisito**
 
-This template does not include any kind of persistence (database). For more advanced examples, check out the [serverless/examples repository](https://github.com/serverless/examples) which includes Typescript, Mongo, DynamoDB and other examples.
+- Instalar Docker en tu máquina(https://docs.docker.com/engine/install/)
 
-## Setup
-
-Run this command to initialize a new project in a new working directory.
-
+**Instalacion**
+- Clonar el proyecto. 
+- Ingresar a la carpeta del proyecto.
+- Copiar y pegar el archivo .env.example a .env
+```bash
+cp .env.example .env
 ```
-npm install
+- Iniciar los contenedores: 
+```bash
+docker-compose up -d
 ```
-
-## Usage
-
-**Deploy**
-
+- Entrar al contenedor: 
+```bash
+docker-compose exec -it serverless-node-culqi bash
 ```
-$ serverless deploy
+- Ejecutar los test: 
+```bash
+npm run test
 ```
-
-**Invoke the function locally.**
-
+- Ejecutar los test sin entrar al contenedor: 
+```bash
+docker-compose exec serverless-node-culqi npm run test
 ```
-serverless invoke local --function hello
+- Para probar los endpoints usar el archivo de postman.collections adjuntado: 
+```bash
+CulqiChallenge.postman_collection.json
 ```
-
-**Invoke the function**
-
-```
-curl https://xxxxxxxxx.execute-api.us-east-1.amazonaws.com/
-```
+- Todos los test ejecutados exitosamente: 
+![alt text](https://imageupload.io/ib/RtwT1A9Y7m4DhNX_1694302794.jpg)
