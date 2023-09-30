@@ -1,4 +1,4 @@
-import { Prisma } from '@prisma/client';
+import { Prisma, Card } from '@prisma/client';
 
 export interface ICardBodyCreate {
   card_number: number
@@ -16,3 +16,8 @@ export type ICardDtoCreate = Omit<
 export interface ICardQueryCreate {
   token?: string
 }
+
+export type ICardGeTResponse = Pick<
+  Card,
+  'card_number' | 'expiration_month' | 'expiration_year' | 'email'
+>

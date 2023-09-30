@@ -4,6 +4,7 @@ import db from '../../utils/prisma.utils'
 import cache from '../../utils/redis.utils'
 import CardDto from '../../dtos/card.dto'
 import { fail, created } from '../../utils/response.utils'
+import CreateProductAction from '../../actions/card/create.action'
 
 (async () => {
   await db.$connect()
@@ -14,8 +15,7 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
   try {
     const body: ICardBodyCreate = JSON.parse(event.body as string)
     const data = CardDto.create(body)
-    const card = await db.card.create({ data })
-    await cache.setEx(card.id, 60, JSON.stringify(card))
+    const card = await (new CreateProductAction(data)).execute();
 
     return created({ token: card.id })
   } catch (error) {
