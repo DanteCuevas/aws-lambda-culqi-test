@@ -4,13 +4,16 @@ import cache from '../../utils/redis.utils'
 import { decryp } from '../../utils/cryptojs.utils'
 
 class GetProductAction {
-  private token: string
+  private token?: string
 
-  constructor (token: string) {
+  constructor (token?: string) {
     this.token = token
   }
 
   public execute = async (): Promise<ICardGeTResponse|null> => {
+    if (!this.token) {
+      return null
+    }
     const cacheCard = await cache.get(this.token)
     if (!cacheCard) {
       return null
