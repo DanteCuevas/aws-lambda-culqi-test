@@ -6,6 +6,8 @@ COPY . .
      
 RUN npm install
 
+RUN npm run generate-types
+
 RUN npm run build
 
 CMD ["npm", "run", "dev"]

@@ -15,6 +15,21 @@ services:
             - serverless-postgres-culqi
             - serverless-redis-culqi
 
+    serverless-vue-culqi:
+        build:
+            context: .
+            dockerfile: vue.Dockerfile
+        container_name: serverless-vue-culqi
+        working_dir: /app
+        ports:
+            - "8081:8080"
+        volumes:
+            - ./microfrontend/:/app
+        networks:
+            - serverless-network-culqi
+        depends_on:
+            - serverless-node-culqi
+
     # Postgres database service
     serverless-postgres-culqi:
         image: postgres:15
