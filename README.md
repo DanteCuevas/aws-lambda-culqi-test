@@ -41,4 +41,4 @@ docker-compose exec serverless-node-culqi npm run test
 CulqiChallenge.postman_collection.json
 ```
 - Todos los test ejecutados exitosamente: 
-![alt text](https://imageupload.io/ib/RtwT1A9Y7m4DhNX_1694302794.jpg)
+![alt text](https://raw.githubusercontent.com/DanteCuevas/aws-lambda-culqi-test/main/screan-test.jpg)
