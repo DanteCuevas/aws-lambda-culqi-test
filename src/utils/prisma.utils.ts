@@ -1,6 +1,6 @@
 import { PrismaClient, Prisma } from '@prisma/client'
 
-const url = process.env.DATABASE_URL
+const url = process.env.NODE_ENV === 'test' ? process.env.DATABASE_URL_TEST : process.env.DATABASE_URL
 const config: Prisma.PrismaClientOptions = {
   datasources: {
     db: {

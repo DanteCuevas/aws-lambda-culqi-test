@@ -9,9 +9,13 @@
             "node_modules/@types"
         ],
         "types": [
-            "node"
+            "node", "jest"
         ],
+        "forceConsistentCasingInFileNames": true,
         "esModuleInterop": true,
         "inlineSourceMap": true
-    }
+    },
+    "exclude": [
+      "node_modules", "prisma/*", "./coverage", "./dist", "tests", "jest.config.js,", "microfrontend"
+    ]
 }
