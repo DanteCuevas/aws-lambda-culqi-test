@@ -2,6 +2,7 @@ import { APIGatewayProxyEventPart } from '../../interfaces/event.generator.inter
 
 const APIGatewayRequest = ({
   body,
+  headers = {},
   httpMethod,
   path = '',
   queryStringParameters,
@@ -10,7 +11,7 @@ const APIGatewayRequest = ({
 }: APIGatewayProxyEventPart) => {
   const request = {
     body: body ? JSON.stringify(body) : null,
-    headers: {},
+    headers,
     multiValueHeaders: {},
     httpMethod,
     isBase64Encoded: false,

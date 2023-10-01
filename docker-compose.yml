@@ -43,6 +43,18 @@ services:
         networks:
             - serverless-network-culqi
 
+    serverless-postgres-culqi-test:
+        image: postgres:15
+        container_name: serverless-postgres-culqi-test
+        ports:
+            - "5434:5432"
+        environment:
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=postgres
+            - POSTGRES_DB=culqi_db_test
+        networks:
+            - serverless-network-culqi
+
     serverless-redis-culqi: # Name of container
         image: redis
         container_name: serverless-redis-culqi

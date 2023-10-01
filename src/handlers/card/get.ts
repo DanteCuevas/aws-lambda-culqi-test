@@ -1,6 +1,6 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda'
 import { ICardQueryCreate } from '../../interfaces/card.interface'
-import { success, fail, unprocessableEntity } from '../../utils/response.utils'
+import { success, fail, unprocessableEntity, unauthorized } from '../../utils/response.utils'
 import cache from '../../utils/redis.utils'
 import GetProductAction from '../../actions/card/get.action'
 import ValidateMerchandiseAction from '../../actions/merchandise/validate.action'
@@ -19,13 +19,13 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
     await (new GetCardRequest(params)).validate()
     const data = await (new GetProductAction(params.token)).execute()
     if (!data) {
-      return unprocessableEntity({ message: 'tokens is invalid  or expired' })
+      return unprocessableEntity({ message: '"token" is invalid  or expired' })
     }
 
     return success(data)
   } catch (error) {
     if (error instanceof UnauthorizedError) {
-      return unprocessableEntity({ message: error.message });
+      return unauthorized({ message: error.message });
     }
     if (error instanceof Joi.ValidationError) {
       const { message } = error.details[0];

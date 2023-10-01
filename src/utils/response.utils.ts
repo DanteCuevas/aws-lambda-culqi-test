@@ -19,6 +19,10 @@ const badRequest = (data: object): APIGatewayProxyResult => {
   return buildResponse(400, data);
 }
 
+const unauthorized = (data: object): APIGatewayProxyResult => {
+  return buildResponse(401, data);
+}
+
 const notFound = (data: object): APIGatewayProxyResult => {
   return buildResponse(404, data);
 }
@@ -35,6 +39,7 @@ export {
   success,
   created,
   badRequest,
+  unauthorized,
   notFound,
   unprocessableEntity,
   fail

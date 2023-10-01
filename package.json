@@ -5,6 +5,7 @@
   "scripts": {
     "clean-db": "prisma migrate reset",
     "sync-db-tables": "prisma db push",
+    "sync-db-tables-test": "DATABASE_URL=postgresql://postgres:postgres@serverless-postgres-culqi-test:5432/culqi_db_test?schema=public prisma db push",
     "generate-types": "prisma generate",
     "lint": "eslint . --ext .ts",
     "lint.fix": "eslint . --ext .ts —-fix",
