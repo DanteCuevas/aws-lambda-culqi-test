@@ -12,7 +12,7 @@ const rulesJoi = Joi.object({
     .min(3)
     .max(4)
     .regex(/^\d+$/)
-    .messages({ 'string.pattern.base': 'cvv must be contain only numbers' })
+    .messages({ 'string.pattern.base': '"cvv" must be contain only numbers' })
     .required(),
 
   expiration_month: Joi.number()
@@ -28,11 +28,11 @@ const rulesJoi = Joi.object({
       const currentYear: number = new Date().getFullYear()
       if (year < currentYear || year > currentYear + 5) {
         // @ts-ignore
-        return helper.message('expiration_year must be a valid year')
+        return helper.message('"expiration_year" must be a valid year')
       }
       return true
     })
-    .messages({ 'string.pattern.base': 'expiration_year must be a number' })
+    .messages({ 'string.pattern.base': '"expiration_year" must be contain only numbers' })
     .required(),
 
   email: Joi.string()
@@ -41,7 +41,7 @@ const rulesJoi = Joi.object({
       const domain: string = value.split('@')[1]
       if (domain !== 'gmail.com' && domain !== 'hotmail.com' && domain !== 'yahoo.es') {
         // @ts-ignore
-        return helper.message('email must be a gmail.com, hotmail.com, yahoo.es')
+        return helper.message('"email" must be a gmail.com, hotmail.com, yahoo.es')
       }
       return true
     })

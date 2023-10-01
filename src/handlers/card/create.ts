@@ -3,7 +3,7 @@ import { ICardBodyCreate } from '../../interfaces/card.interface'
 import db from '../../utils/prisma.utils'
 import cache from '../../utils/redis.utils'
 import CardDto from '../../dtos/card.dto'
-import { fail, created, unprocessableEntity } from '../../utils/response.utils'
+import { fail, created, unprocessableEntity, unauthorized } from '../../utils/response.utils'
 import CreateProductAction from '../../actions/card/create.action'
 import ValidateMerchandiseAction from '../../actions/merchandise/validate.action'
 import CreateCardRequest from '../../requests/card/create'
@@ -26,7 +26,7 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
     return created({ token: card.id })
   } catch (error) {
     if (error instanceof UnauthorizedError) {
-      return unprocessableEntity({ message: error.message });
+      return unauthorized({ message: error.message });
     }
     if (error instanceof Joi.ValidationError) {
       const { message } = error.details[0];
