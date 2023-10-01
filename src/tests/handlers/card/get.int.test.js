@@ -87,4 +87,17 @@ describe('get card by token integration tests', () => {
     const response = JSON.parse(res.body);
     expect(response.message).toEqual('"token" length must be 16 characters long');
   })
+
+  test('it should return 422 wiht "token" is invalid or expired', async () => {
+    const event = eventGenerator({
+      headers,
+      queryStringParameters: {
+        token: 'abcdABCD90123456'
+      }
+    });
+    const res = await getCard.handler(event);
+    expect(res.statusCode).toBe(422);
+    const response = JSON.parse(res.body);
+    expect(response.message).toEqual('"token" is invalid or expired');
+  })
 });

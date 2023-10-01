@@ -19,7 +19,7 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
     await (new GetCardRequest(params)).validate()
     const data = await (new GetProductAction(params.token)).execute()
     if (!data) {
-      return unprocessableEntity({ message: '"token" is invalid  or expired' })
+      return unprocessableEntity({ message: '"token" is invalid or expired' })
     }
 
     return success(data)
