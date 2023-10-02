@@ -29,16 +29,15 @@ export const useCard = defineStore("card", () => {
     return window.axios
       .post("token", form)
       .then((response) => {
-        console.log(response);
+        this.resetForm();
+        alert(`Su token es: ${response.data.token}`)
       })
       .catch((error) => {
         if (error.response.status === 422) {
-          console.log(error.response.data);
           errors.value = error.response.data.errors;
         }
       })
       .finally(() => {
-        form.cvv = "";
         loading.value = false;
       });
   }

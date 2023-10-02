@@ -2,6 +2,7 @@ import { describe, expect, test } from '@jest/globals';
 import cache from '../../../utils/redis.utils'
 import * as getCard from '../../../handlers/card/get';
 import eventGenerator from '../../../utils/test/eventGenerator';
+import CardSeeder from '../../../seeders/card';
 
 afterAll(async () => await cache.quit());
 
@@ -11,25 +12,22 @@ describe('get card by token integration tests', () => {
   }
 
   test('it should return 200 with valid token', async () => {
-    /* const mockData = {
-      card_number: '4111111111111111',
-      cvv: '123',
-      expiration_month: '12',
-      expiration_year: '2024',
-      email: 'danieldantecuevas22@gmail.com'
-    }; */
-
+    const body = CardSeeder.generate();
+    delete body.cvv;
     const event = eventGenerator({
       headers,
       queryStringParameters: {
-        token: '1234567890'
+        token: 'MockToken'
       }
     });
-    /* const res = await getCard.handler(event);
-    expect(res.statusCode).toBe(200);
+    const dataFake = { statusCode: 200, body: JSON.stringify(body) }
+    const responseDataSpy = jest.spyOn(getCard, 'handler').mockResolvedValueOnce(dataFake);
+    const res = await getCard.handler(event);
     const response = JSON.parse(res.body);
-    expect(response.token).toEqual('1234567890'); */
-    expect(event.headers).toBeDefined()
+
+    expect(res.statusCode).toBe(200);
+    expect(response).toEqual(body);
+    expect(responseDataSpy).toBeCalledWith(event)
   })
 
   test('it should return 401 without merchandise pk', async () => {
