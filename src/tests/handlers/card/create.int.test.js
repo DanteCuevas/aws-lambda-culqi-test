@@ -54,7 +54,7 @@ describe('create token integration tests', () => {
 
       expect(res.statusCode).toBe(422);
       const response = JSON.parse(res.body);
-      expect(response.message).toBe('"card_number" is required');
+      expect(response.errors.card_number[0]).toBe('"card_number" is required');
     })
 
     test('it should return 422 when the body is correct but the "card_number" must be a string', async () => {
@@ -65,18 +65,18 @@ describe('create token integration tests', () => {
 
       expect(res.statusCode).toBe(422);
       const response = JSON.parse(res.body);
-      expect(response.message).toBe('"card_number" must be a string');
+      expect(response.errors.card_number[0]).toBe('"card_number" must be a string');
     })
 
     test('it should return 422 when the body is correct but the "card_number" length must be at least 13 characters long', async () => {
       const body = CardSeeder.generate();
-      body.card_number = '12341234'
+      body.card_number = '123412341234'
       const event = eventGenerator({ headers, body })
       const res = await createCard.handler(event);
 
       expect(res.statusCode).toBe(422);
       const response = JSON.parse(res.body);
-      expect(response.message).toBe('"card_number" length must be at least 13 characters long');
+      expect(response.errors.card_number[0]).toBe('"card_number" length must be at least 13 characters long');
     })
 
     test('it should return 422 when the body is correct but the "card_number" length must be less than or equal to 16 characters long', async () => {
@@ -87,7 +87,7 @@ describe('create token integration tests', () => {
 
       expect(res.statusCode).toBe(422);
       const response = JSON.parse(res.body);
-      expect(response.message).toBe('"card_number" length must be less than or equal to 16 characters long');
+      expect(response.errors.card_number[0]).toBe('"card_number" length must be less than or equal to 16 characters long');
     })
 
     test('it should return 422 when the body is correct but the "card_number" must be a credit card', async () => {
@@ -98,7 +98,7 @@ describe('create token integration tests', () => {
 
       expect(res.statusCode).toBe(422);
       const response = JSON.parse(res.body);
-      expect(response.message).toBe('"card_number" must be a credit card');
+      expect(response.errors.card_number[0]).toBe('"card_number" must be a credit card');
     })
   })
 
@@ -111,7 +111,7 @@ describe('create token integration tests', () => {
 
       expect(res.statusCode).toBe(422);
       const response = JSON.parse(res.body);
-      expect(response.message).toBe('"cvv" is required');
+      expect(response.errors.cvv[0]).toBe('"cvv" is required');
     })
 
     test('it should return 422 when the body is correct but the "cvv" must be a string', async () => {
@@ -122,7 +122,7 @@ describe('create token integration tests', () => {
 
       expect(res.statusCode).toBe(422);
       const response = JSON.parse(res.body);
-      expect(response.message).toBe('"cvv" must be a string');
+      expect(response.errors.cvv[0]).toBe('"cvv" must be a string');
     })
 
     test('it should return 422 when the body is correct but the "cvv" length must be at least 3 characters long', async () => {
@@ -133,7 +133,7 @@ describe('create token integration tests', () => {
 
       expect(res.statusCode).toBe(422);
       const response = JSON.parse(res.body);
-      expect(response.message).toBe('"cvv" length must be at least 3 characters long');
+      expect(response.errors.cvv[0]).toBe('"cvv" length must be at least 3 characters long');
     })
 
     test('it should return 422 when the body is correct but the "cvv" length must be less than or equal to 4 characters long', async () => {
@@ -144,7 +144,7 @@ describe('create token integration tests', () => {
 
       expect(res.statusCode).toBe(422);
       const response = JSON.parse(res.body);
-      expect(response.message).toBe('"cvv" length must be less than or equal to 4 characters long');
+      expect(response.errors.cvv[0]).toBe('"cvv" length must be less than or equal to 4 characters long');
     })
 
     test('it should return 422 when the body is correct but the "cvv" must be contain only numbers', async () => {
@@ -155,7 +155,7 @@ describe('create token integration tests', () => {
 
       expect(res.statusCode).toBe(422);
       const response = JSON.parse(res.body);
-      expect(response.message).toBe('"cvv" must be contain only numbers');
+      expect(response.errors.cvv[0]).toBe('"cvv" must be contain only numbers');
     })
   })
 
@@ -168,7 +168,7 @@ describe('create token integration tests', () => {
 
       expect(res.statusCode).toBe(422);
       const response = JSON.parse(res.body);
-      expect(response.message).toBe('"expiration_month" is required');
+      expect(response.errors.expiration_month[0]).toBe('"expiration_month" is required');
     })
 
     test('it should return 422 when the body is correct but the "expiration_month" must be a number', async () => {
@@ -179,7 +179,7 @@ describe('create token integration tests', () => {
 
       expect(res.statusCode).toBe(422);
       const response = JSON.parse(res.body);
-      expect(response.message).toBe('"expiration_month" must be a number');
+      expect(response.errors.expiration_month[0]).toBe('"expiration_month" must be a number');
     })
 
     test('it should return 422 when the body is correct but the "expiration_month" must be greater than or equal to 1', async () => {
@@ -190,7 +190,7 @@ describe('create token integration tests', () => {
 
       expect(res.statusCode).toBe(422);
       const response = JSON.parse(res.body);
-      expect(response.message).toBe('"expiration_month" must be greater than or equal to 1');
+      expect(response.errors.expiration_month[0]).toBe('"expiration_month" must be greater than or equal to 1');
     })
 
     test('it should return 422 when the body is correct but the "expiration_month" must be less than or equal to 12', async () => {
@@ -201,7 +201,7 @@ describe('create token integration tests', () => {
 
       expect(res.statusCode).toBe(422);
       const response = JSON.parse(res.body);
-      expect(response.message).toBe('"expiration_month" must be less than or equal to 12');
+      expect(response.errors.expiration_month[0]).toBe('"expiration_month" must be less than or equal to 12');
     })
   })
 
@@ -214,7 +214,7 @@ describe('create token integration tests', () => {
 
       expect(res.statusCode).toBe(422);
       const response = JSON.parse(res.body);
-      expect(response.message).toBe('"expiration_year" is required');
+      expect(response.errors.expiration_year[0]).toBe('"expiration_year" is required');
     })
 
     test('it should return 422 when the body is correct but the "expiration_year" must be a string', async () => {
@@ -225,7 +225,7 @@ describe('create token integration tests', () => {
 
       expect(res.statusCode).toBe(422);
       const response = JSON.parse(res.body);
-      expect(response.message).toBe('"expiration_year" must be a string');
+      expect(response.errors.expiration_year[0]).toBe('"expiration_year" must be a string');
     })
 
     test('it should return 422 when the body is correct but the "expiration_year" must be contain only numbers', async () => {
@@ -236,7 +236,7 @@ describe('create token integration tests', () => {
 
       expect(res.statusCode).toBe(422);
       const response = JSON.parse(res.body);
-      expect(response.message).toBe('"expiration_year" must be contain only numbers');
+      expect(response.errors.expiration_year[0]).toBe('"expiration_year" must be contain only numbers');
     })
 
     test('it should return 422 when the body is correct but the "expiration_year" length must be 4 characters long', async () => {
@@ -247,7 +247,7 @@ describe('create token integration tests', () => {
 
       expect(res.statusCode).toBe(422);
       const response = JSON.parse(res.body);
-      expect(response.message).toBe('"expiration_year" length must be 4 characters long');
+      expect(response.errors.expiration_year[0]).toBe('"expiration_year" length must be 4 characters long');
     })
 
     test('it should return 422 when the body is correct but the "expiration_year" must be a valid year', async () => {
@@ -258,7 +258,7 @@ describe('create token integration tests', () => {
 
       expect(res.statusCode).toBe(422);
       const response = JSON.parse(res.body);
-      expect(response.message).toBe('"expiration_year" must be a valid year');
+      expect(response.errors.expiration_year[0]).toBe('"expiration_year" must be a valid year');
     })
   })
 
@@ -271,7 +271,7 @@ describe('create token integration tests', () => {
 
       expect(res.statusCode).toBe(422);
       const response = JSON.parse(res.body);
-      expect(response.message).toBe('"email" is required');
+      expect(response.errors.email[0]).toBe('"email" is required');
     })
 
     test('it should return 422 when the body is correct but the "email" must be a string', async () => {
@@ -282,7 +282,7 @@ describe('create token integration tests', () => {
 
       expect(res.statusCode).toBe(422);
       const response = JSON.parse(res.body);
-      expect(response.message).toBe('"email" must be a string');
+      expect(response.errors.email[0]).toBe('"email" must be a string');
     })
 
     test('it should return 422 when the body is correct but the "email" must be a valid email', async () => {
@@ -293,7 +293,7 @@ describe('create token integration tests', () => {
 
       expect(res.statusCode).toBe(422);
       const response = JSON.parse(res.body);
-      expect(response.message).toBe('"email" must be a valid email');
+      expect(response.errors.email[0]).toBe('"email" must be a valid email');
     })
 
     test('it should return 422 when the body is correct but the "email" must be a gmail.com, hotmail.com, yahoo.es', async () => {
@@ -304,7 +304,7 @@ describe('create token integration tests', () => {
 
       expect(res.statusCode).toBe(422);
       const response = JSON.parse(res.body);
-      expect(response.message).toBe('"email" must be a gmail.com, hotmail.com, yahoo.es');
+      expect(response.errors.email[0]).toBe('"email" must be a gmail.com, hotmail.com, yahoo.es');
     })
   })
 })

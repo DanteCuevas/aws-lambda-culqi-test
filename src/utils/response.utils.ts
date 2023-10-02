@@ -7,6 +7,10 @@ const buildResponse = (statusCode: number, data: object): APIGatewayProxyResult 
   };
 }
 
+const errorCustom = (data: object): object => {
+  return { errors: data }
+}
+
 const success = (data: object): APIGatewayProxyResult => {
   return buildResponse(200, data);
 }
@@ -28,7 +32,7 @@ const notFound = (data: object): APIGatewayProxyResult => {
 }
 
 const unprocessableEntity = (data: object): APIGatewayProxyResult => {
-  return buildResponse(422, data);
+  return buildResponse(422, errorCustom(data));
 }
 
 const fail = (data: object = { message: 'Server error, try again' }): APIGatewayProxyResult => {

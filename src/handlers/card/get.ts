@@ -7,6 +7,7 @@ import ValidateMerchandiseAction from '../../actions/merchandise/validate.action
 import GetCardRequest from '../../requests/card/get'
 import UnauthorizedError from '../../utils/errors/unauthorized'
 import Joi from 'joi'
+import JoiErrorCustom from '../../utils/errors/joi'
 
 (async () => {
   await cache.connect()
@@ -19,7 +20,7 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
     await (new GetCardRequest(params)).validate()
     const data = await (new GetProductAction(params.token)).execute()
     if (!data) {
-      return unprocessableEntity({ message: '"token" is invalid or expired' })
+      return unprocessableEntity({ token: ['"token" is invalid or expired'] })
     }
 
     return success(data)
@@ -28,8 +29,8 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
       return unauthorized({ message: error.message });
     }
     if (error instanceof Joi.ValidationError) {
-      const { message } = error.details[0];
-      return unprocessableEntity({ message });
+      const message = JoiErrorCustom.format(error)
+      return unprocessableEntity(message);
     }
     return fail()
   }

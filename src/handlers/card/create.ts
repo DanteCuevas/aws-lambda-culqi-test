@@ -9,6 +9,7 @@ import ValidateMerchandiseAction from '../../actions/merchandise/validate.action
 import CreateCardRequest from '../../requests/card/create'
 import UnauthorizedError from '../../utils/errors/unauthorized'
 import Joi from 'joi'
+import JoiErrorCustom from '../../utils/errors/joi'
 
 (async () => {
   await db.$connect()
@@ -29,8 +30,8 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
       return unauthorized({ message: error.message });
     }
     if (error instanceof Joi.ValidationError) {
-      const { message } = error.details[0];
-      return unprocessableEntity({ message });
+      const message = JoiErrorCustom.format(error)
+      return unprocessableEntity(message);
     }
     return fail()
   }

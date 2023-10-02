@@ -46,7 +46,7 @@ const rulesJoi = Joi.object({
       return true
     })
     .required()
-});
+}).options({ abortEarly: false });
 
 class CreateCardRequest {
   private body: ICardBodyCreate;
