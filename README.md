@@ -38,14 +38,24 @@ docker-compose exec -it serverless-node-culqi npm run sync-db-tables-test
 ```bash
 docker-compose exec -it serverless-postgres-culqi postgres --version
 ```
+- Para hacer un build de typescript a commonjs:
+```bash
+docker-compose exec serverless-node-culqi npm run build
+```
 - Ejecutar los test:
 ```bash
 docker-compose exec serverless-node-culqi npm run test
 ```
-- Antes formulario en vue verificar si el serverless responde ya que su instanciacion demora:
+- Iniciar el serverless:
+```bash
+docker-compose exec -it serverless-node-culqi npm run dev
+```
+- Antes de probar el formulario en vue verificar si el serverless responde ya que su instanciacion demora:
 ```bash
 curl http://localhost:3001
 ```
+Nota: debe responde {"message":"Go Serverless v3.0! Your function executed successfully!"}
+
 - Ingresar a la siguiente direccion para probar la tokenizacion desde formulario:
 ```bash
 http://localhost:8081

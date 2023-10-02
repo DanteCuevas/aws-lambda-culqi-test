@@ -10,4 +10,6 @@ RUN npm run generate-types
 
 RUN npm run build
 
-CMD ["npm", "run", "dev"]
+#CMD ["npm", "run", "dev"]
+
+CMD ["tail", "-f", "/dev/null"]
