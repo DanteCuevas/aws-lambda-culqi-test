@@ -38,17 +38,13 @@ docker-compose exec -it serverless-node-culqi npm run sync-db-tables-test
 ```bash
 docker-compose exec -it serverless-postgres-culqi postgres --version
 ```
-- Para hacer un build de typescript a commonjs:**(PRIMER COMMANDO DEL CHALLENGE)**
+- Para hacer un build de typescript a commonjs **(PRIMER COMANDO DEL CHALLENGE)**:
 ```bash
 docker-compose exec serverless-node-culqi npm run build
 ```
-- Ejecutar los test:**(SEGUNDO COMMANDO DEL CHALLENGE)**
+- Ejecutar los test **(SEGUNDO COMANDO DEL CHALLENGE)**:
 ```bash
 docker-compose exec serverless-node-culqi npm run test
-```
-- Iniciar el serverless:
-```bash
-docker-compose exec -it serverless-node-culqi npm run dev
 ```
 - Antes de probar el formulario en vue verificar si el serverless responde ya que su instanciacion demora:
 ```bash
