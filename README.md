@@ -34,15 +34,15 @@ docker-compose exec -it serverless-node-culqi npm run sync-db-tables
 ```bash
 docker-compose exec -it serverless-node-culqi npm run sync-db-tables-test
 ```
-- Si no se pudo ejecutar las migraciones verificar si postgres esta okey e intentar de nueva ejecutar las migraciones:
+- Si no se pudo ejecutar las migraciones verificar si postgres esta okey e intentar de ejecutar de nuevo las migraciones:
 ```bash
 docker-compose exec -it serverless-postgres-culqi postgres --version
 ```
-- Para hacer un build de typescript a commonjs:
+- Para hacer un build de typescript a commonjs:**(PRIMER COMMANDO DEL CHALLENGE)**
 ```bash
 docker-compose exec serverless-node-culqi npm run build
 ```
-- Ejecutar los test:
+- Ejecutar los test:**(SEGUNDO COMMANDO DEL CHALLENGE)**
 ```bash
 docker-compose exec serverless-node-culqi npm run test
 ```
