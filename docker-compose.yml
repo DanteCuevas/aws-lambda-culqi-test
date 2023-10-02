@@ -10,6 +10,7 @@ services:
         volumes:
             - ./:/app
             - /app/node_modules
+            - /app/dist
         networks:
             - serverless-network-culqi
         depends_on:
@@ -27,6 +28,7 @@ services:
         volumes:
             - ./microfrontend/:/app
             - /app/node_modules
+            - /app/dist
         networks:
             - serverless-network-culqi
         depends_on:
