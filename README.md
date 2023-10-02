@@ -16,29 +16,43 @@
 **Instalacion**
 - Clonar el proyecto. 
 - Ingresar a la carpeta del proyecto.
-- Copiar y pegar el archivo .env.example a .env
+- Copiar y pegar los enviroments.
 ```bash
 cp .env.example .env
 ```
-- Iniciar los contenedores: 
+```bash
+cp .env.test.example .env.test
+```
+- Iniciar los contenedores:
 ```bash
 docker-compose up -d
 ```
-- Entrar al contenedor: 
+- Ejecutar las migraciones para produccion y test:
 ```bash
-docker-compose exec -it serverless-node-culqi bash
+docker-compose exec -it serverless-node-culqi npm run sync-db-tables
 ```
-- Ejecutar los test: 
 ```bash
-npm run test
+docker-compose exec -it serverless-node-culqi npm run sync-db-tables-test
 ```
-- Ejecutar los test sin entrar al contenedor: 
+- Si no se pudo ejecutar las migraciones verificar si postgres esta okey e intentar de nueva ejecutar las migraciones:
+```bash
+docker-compose exec -it serverless-postgres-culqi postgres --version
+```
+- Ejecutar los test:
 ```bash
 docker-compose exec serverless-node-culqi npm run test
 ```
-- Para probar los endpoints usar el archivo de postman.collections adjuntado: 
+- Antes formulario en vue verificar si el serverless responde ya que su instanciacion demora:
+```bash
+curl http://localhost:3001
+```
+- Ingresar a la siguiente direccion para probar la tokenizacion desde formulario:
+```bash
+http://localhost:8081
+```
+- Para probar los endpoints usar el archivo de postman.collections adjuntado:
 ```bash
 CulqiChallenge.postman_collection.json
 ```
-- Todos los test ejecutados exitosamente: 
+- Todos los test ejecutados exitosamente:
 ![alt text](https://raw.githubusercontent.com/DanteCuevas/aws-lambda-culqi-test/main/screan-test.jpg)

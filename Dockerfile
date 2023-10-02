@@ -8,10 +8,6 @@ RUN npm install
 
 RUN npm run generate-types
 
-RUN npm run sync-db-tables
-
-RUN npm run sync-db-tables-test
-
 RUN npm run build
 
 CMD ["npm", "run", "dev"]
