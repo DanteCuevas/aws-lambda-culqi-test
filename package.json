@@ -5,15 +5,16 @@
   "scripts": {
     "clean-db": "prisma migrate reset",
     "sync-db-tables": "prisma db push",
-    "sync-db-tables-test": "DATABASE_URL=postgresql://postgres:postgres@serverless-postgres-culqi-test:5432/culqi_db_test?schema=public prisma db push",
+    "clean-db-test": "dotenv -e .env.test -- prisma migrate reset",
+    "sync-db-tables-test": "dotenv -e .env.test -- prisma db push",
     "generate-types": "prisma generate",
     "lint": "eslint . --ext .ts",
     "lint.fix": "eslint . --ext .ts —-fix",
     "build": "tsc",
     "deploy": "npm run build && ./node_modules/.bin/sls deploy",
     "dev": "./node_modules/.bin/sls offline start",
-    "test": "NODE_ENV=test jest",
-    "test.detect": "NODE_ENV=test jest --detectOpenHandles"
+    "test": "dotenv -e .env.test -- jest",
+    "test.detect": "dotenv -e .env.test -- jest --detectOpenHandles"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.22.20",
@@ -41,6 +42,7 @@
     "@prisma/client": "^5.3.1",
     "crypto-js": "^4.1.1",
     "dotenv": "^16.3.1",
+    "dotenv-cli": "^7.3.0",
     "joi": "^17.10.2",
     "redis": "^4.6.10"
   }
