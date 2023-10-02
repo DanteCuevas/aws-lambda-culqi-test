@@ -1,32 +1,44 @@
+<script setup>
+defineProps({
+  msg: {
+    type: String,
+    required: true
+  }
+})
+</script>
+
 <template>
-  <div class="hello">
-    <div style="padding:40px;">
-      <h1>
-        Hello from
-        <span style="color:#29558C">Middleware[i</span>
-        <span style="color:#AD5353">]nventory</span>
-      </h1>
-      <p>
-        It is good to have you here this is a Simple Page in
-        <span class="bg-info">Vue JS</span> and Running on
-        <span class="bg-success">Docker Container</span>
-      </p>
-    </div>
+  <div class="greetings">
+    <h1 class="green">{{ msg }}</h1>
+    <h3>
+      You’ve successfully created a project with
+      <a href="https://vitejs.dev/" target="_blank" rel="noopener">Vite</a> +
+      <a href="https://vuejs.org/" target="_blank" rel="noopener">Vue 3</a>.
+    </h3>
   </div>
 </template>
 
-<script lang="ts">
-  export default {
-    name: "HelloWorld",
-    props: {
-      msg: String
-    }
-  };
-</script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.class-test {
-  background-color: black;
+h1 {
+  font-weight: 500;
+  font-size: 2.6rem;
+  position: relative;
+  top: -10px;
+}
+
+h3 {
+  font-size: 1.2rem;
+}
+
+.greetings h1,
+.greetings h3 {
+  text-align: center;
+}
+
+@media (min-width: 1024px) {
+  .greetings h1,
+  .greetings h3 {
+    text-align: left;
+  }
 }
 </style>
